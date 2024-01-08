@@ -17,7 +17,7 @@ export let isPasswordValid = (password) => {
 
   switch (true) {
     case !password.trim():
-      return "Password is required";
+      return "Required field cannot be empty";
     case !lengthCheck.test(password):
       return "Password must be at least 8 characters.";
     case !upperCaseCheck.test(password):
@@ -60,10 +60,10 @@ export const validateNewpassword = (newPasswordData, setErrors) => {
   }
 
   if (newPasswordData.confirmPassword.trim() === "") {
-    errors.confirmPassword = "confirmPassword required";
+    errors.confirmPassword = "Required field cannot be empty";
     isValid = false;
   } else if (newPasswordData.newPassword !== newPasswordData.confirmPassword) {
-    errors.confirmPassword = "New password and Confirm password not match";
+    errors.confirmPassword = "New password and confirm password not match";
     isValid = false;
   }
 

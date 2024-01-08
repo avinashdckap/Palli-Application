@@ -15,7 +15,7 @@ import {
 } from "./routes/routes.jsx";
 //Define your routes for APP here
 import Login from "./pages/login/Login.jsx";
-import ChangePassword from "./pages/changePasswordPage/ResetPasswordPage";
+import ChangePassword from "./pages/changePasswordPage/ChangePasswordPage";
 import ForgotPassword from "./pages/forgotPage/ForgotPage";
 import Applications from "./pages/applications/Applications.jsx";
 import DashBoard from "./pages/dashBoard/DashBoard.jsx";

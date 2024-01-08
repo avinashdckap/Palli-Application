@@ -274,9 +274,10 @@ body .container .login-page-container .login-container .login-form-container for
 body .container .login-page-container .login-container .login-form-container form .password-container .password-field .eye-icon {
   cursor: pointer;
   position: absolute;
-  width: 16px;
-  top: 10px;
+  top: 12px;
   right: 12px;
+  font-size: 16px;
+  color: #969d88;
 }
 body .container .login-page-container .login-container .login-form-container form .remember-container {
   justify-content: space-between;

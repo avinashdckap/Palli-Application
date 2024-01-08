@@ -18,7 +18,7 @@ import "./scss/Login.css";
 const Login = () => {
   const navigate = useNavigate();
   const { setToken, setUser } = useAuth();
-  const [showPassword, setShowPassword] = useState(false);
+  const [showPassword, setShowPassword] = useState("");
   const [loading, setLoading] = useState(false);
   const {
     register,
@@ -63,7 +63,13 @@ const Login = () => {
         navigate("/login");
       });
   };
+  const handleEyeIconLongPress = (field) => {
+    setShowPassword((prevState) => ({ ...prevState, [field]: true }));
+  };
 
+  const handleEyeIconEndPress = (field) => {
+    setShowPassword((prevState) => ({ ...prevState, [field]: false }));
+  };
   return (
     <>
       <div className="container">
@@ -108,9 +114,9 @@ const Login = () => {
                   <label htmlFor="">Password</label>
                   <div className="password-field">
                     <input
-                      type={`${showPassword ? "text" : "password"}`}
+                      type={`${showPassword.password ? "text" : "password"}`}
                       className={`password-input ${
-                        errors.email ? "error-notify" : ""
+                        errors.password ? "error-notify" : ""
                       }`}
                       name="password"
                       placeholder="Type here..."
@@ -119,14 +125,25 @@ const Login = () => {
                         validate: isPasswordValid,
                       })}
                     />
-                    <img
-                      onClick={() => setShowPassword(!showPassword)}
-                      src={`/icons/${
-                        showPassword ? "eye-open" : "eye-close"
-                      }.svg`}
-                      alt="eye-icon"
-                      className="eye-icon"
-                    />
+                   <span  
+                    id="eye--on"
+                    className="material-symbols-outlined eye-icon"
+                    onTouchStart={() =>
+                      handleEyeIconLongPress("password")
+                    }
+                    onTouchEnd={() => handleEyeIconEndPress("password")}
+                    onMouseDown={() =>
+                      handleEyeIconLongPress("password")
+                    }
+                    onMouseUp={() => handleEyeIconEndPress("password")}
+                    onMouseLeave={() =>
+                      handleEyeIconEndPress("password")
+                    }
+                  >
+                    {showPassword.password
+                      ? "visibility"
+                      : "visibility_off"}
+                  </span>
                   </div>
                   <p className="error-message">
                     {errors.password ? errors.password.message : ""}

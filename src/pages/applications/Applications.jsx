@@ -43,7 +43,6 @@ const Applications = () => {
     user_status: "",
   });
 
-  const [isDocsShow, setIsDocsShow] = useState(false);
 
   const headers = {
     Authorization: `Bearer ${token.access}`,
@@ -238,15 +237,9 @@ const Applications = () => {
                 <div className="Guardian-detial-background">
                   <div className="details-section">
                     <p className="Guardian-detial-title">Ration/Family Card</p>
-                    <Modal
-                      open={isDocsShow}
-                      onOk={() => setIsDocsShow(false)}
-                      onCancel={() => setIsDocsShow(false)}
-                    >
-                      <img src="/public/icons/marsheet.svg" alt="" />
-                    </Modal>
+                    
                     <p className="Guardian-detial-name">
-                      <a onClick={() => setIsDocsShow(true)}>View document</a>
+                      <a >View document</a>
                     </p>
                   </div>
                 </div>
@@ -373,7 +366,7 @@ const Applications = () => {
                 ))}
               </div>
 
-              <div className="skillset-and-other-details flex">
+              {/* <div className="skillset-and-other-details flex">
                 <div className="skillset-container">
                   <div className="skillset-details-heading-section">
                     <p className="heading-name">Other Skillset</p>
@@ -441,7 +434,7 @@ const Applications = () => {
                     </div>
                   </div>
                 </div>
-              </div>
+              </div> */}
             </div>
           </div>
         </main>
@@ -578,7 +571,7 @@ const Applications = () => {
                       </div>
                       <div className="application-district">
                         <p>District</p>
-                        <span>{application.district}</span>
+                        <p className="district-heading">{application.district}</p>
                       </div>
                       <div className="application-qualification">
                         <p>Qualification</p>

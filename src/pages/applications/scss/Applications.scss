@@ -453,11 +453,16 @@ body {
                   font-weight: 400;
                   color: $font-secondary-color;
                 }
-                span {
+                .district-heading::first-letter {
+                  text-transform: uppercase;
+                }
+                .district-heading{
                   font-size: 12px;
                   line-height: 16px;
-                  font-family: 400;
+                  font-family: $font-Roboto;
+                  font-weight: 400;
                   color: $font-primary-color;
+                  text-transform: lowercase;
                 }
               }
               .application-qualification {

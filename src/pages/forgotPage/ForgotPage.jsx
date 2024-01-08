@@ -1,10 +1,21 @@
 import React, { useState } from "react";
-import forgotPasswordImage from "/images/forgot_password1.svg";
+
+import axios from "axios";
+import { notification } from "antd";
+import { LoadingOutlined } from "@ant-design/icons";
+
+
 import { isEmailValid } from "../../utils/validate";
+
+import { API_END_POINT } from "../../../config";
+
+import { useAuth } from "../../context/AuthContext";
+
 import "../forgotPage/scss/ForgotPage.css";
 const ForgotPassword = () => {
   const [email, setEmail] = useState("");
   const [emailError, setEmailError] = useState({});
+  const [loading, setLoading] = useState(false);
 
   const handleEmail = (e) => {
     const { name, value } = e.target;
@@ -18,6 +29,27 @@ const ForgotPassword = () => {
       setEmailError({ ...emailError, email: isvalidEmail });
     } else {
       //doing api call
+      setLoading(true)
+      axios.post(`${API_END_POINT}/api/accounts/forgot_password/`,{email}).then((res)=>{
+        notification.success({
+          message: "Success",
+          description: `${res.data.message}`,
+          duration: 2,
+        });
+        setEmail("")
+      }).catch((error)=>{
+        if (error.response && error.response.status === 400) {
+            notification.error({
+              message: "InvalidUser",
+              description: `Email Not Found`,
+              duration: 2,
+            });
+          // Handle the error or take necessary actions
+        } 
+      }).finally(()=>{
+        setLoading(false);
+        
+      })
     }
   };
   return (
@@ -35,7 +67,7 @@ const ForgotPassword = () => {
         </div>
         <div className="forgot-container flex">
           <div className="login-image-container">
-            <img src={forgotPasswordImage} alt="ForgotPasswordImage" />
+            <img src={"/images/forgot_password1.svg"} alt="ForgotPasswordImage" />
           </div>
           <div className="">
             <div className="forgot-form-container">
@@ -54,14 +86,12 @@ const ForgotPassword = () => {
 
               <div className="form-container">
                 <form action="" onSubmit={handelSubmit}>
-                  {/* Email input field section */}
                   <div className="email-container flex">
                     <label htmlFor="Email">
                       Email Id
                       <span className="required-symbole">*</span>
                     </label>
                     <div className="">
-                      {/* <span className="material-symbols-outlined">mail</span> */}
                       <input
                         autoComplete="off"
                         type="text"
@@ -80,18 +110,28 @@ const ForgotPassword = () => {
 
                   {/* Reset password button */}
                   <div className="forgot-button-container">
-                    <button className="btn primary-medium ">
-                      Reset Password
-                    </button>
+                    {/* <button className="btn primary-medium ">
+                      Send reset link
+                    </button> */}
+
+                    <button className="btn primary-medium " disabled={loading}>
+                    {loading ? (
+                      <span>
+                        Sending...
+                        <LoadingOutlined className="loader" />
+                      </span>
+                    ) : (
+                      "Send reset link"
+                    )}
+                  </button>
                   </div>
                 </form>
               </div>
-              {/* Back link to go back */}
             </div>
           </div>
         </div>
 
-        {/* Right side container with input fields and instructions */}
+ 
       </main>
     </div>
   );

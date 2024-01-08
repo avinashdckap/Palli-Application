@@ -385,11 +385,16 @@ body .container .application-full-container .application-inner-container .applic
   font-weight: 400;
   color: #969d88;
 }
-body .container .application-full-container .application-inner-container .application-list-container .application-card-container .application-details-container .application-district span {
+body .container .application-full-container .application-inner-container .application-list-container .application-card-container .application-details-container .application-district .district-heading::first-letter {
+  text-transform: uppercase;
+}
+body .container .application-full-container .application-inner-container .application-list-container .application-card-container .application-details-container .application-district .district-heading {
   font-size: 12px;
   line-height: 16px;
-  font-family: 400;
+  font-family: "Roboto";
+  font-weight: 400;
   color: #12160a;
+  text-transform: lowercase;
 }
 body .container .application-full-container .application-inner-container .application-list-container .application-card-container .application-details-container .application-qualification p {
   font-size: 12px;

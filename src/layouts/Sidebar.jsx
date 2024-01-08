@@ -21,35 +21,33 @@ const Sidebar = ({ menuList }) => {
   const [active, setActive] = useState(null);
   const [showSwitchBatch, setShowSwitchBatch] = useState(false);
   const [batchList, setBatchList] = useState([]);
-  const [currentBatch,setCurrentBatch] = useState(null)
-  
-
+  const [currentBatch, setCurrentBatch] = useState(null);
 
   const headers = {
     Authorization: `Bearer ${token.access}`,
     "Content-type": "application/json",
   };
   useEffect(() => {
-
     if (batchId) {
       // On Batch, setting Applications as default page
-      
-      const activeMenuItem = menuList.find((menu) => currentPath.includes(menu.id));
-      setActive(activeMenuItem.id)
-  
+
+      const activeMenuItem = menuList.find((menu) =>
+        currentPath.includes(menu.id)
+      );
+      setActive(activeMenuItem.id);
+
       axios
         .get(`${API_END_POINT}/api/list/batch/`, { headers })
         .then((res) => {
-          const batchListData = res.data.data
-          setBatchList(batchListData);
-          setCurrentBatch(batchListData.find((batch) => batch.id === Number(batchId)));
+          const batchListData = res.data.data;
+          setBatchList(batchListData.filter((batch)=>batch.id !== Number(batchId)));
+          setCurrentBatch(
+            batchListData.find((batch) => batch.id === Number(batchId))
+          );
         })
         .catch((err) => console.log(err));
     }
-
   }, [batchId]);
-
-
 
   const handleLogout = () => {
     axios
@@ -69,6 +67,7 @@ const Sidebar = ({ menuList }) => {
       key: "0",
     },
   ];
+  const listBatchLists =  batchList.filter((batch)=>batch.id !== currentBatch?.id);
 
 
   const handleSwitch = (id, batchName) => {
@@ -89,8 +88,8 @@ const Sidebar = ({ menuList }) => {
   return (
     <>
       <nav className="side-nav-container flex">
-        <Link to="/dashboard" >
-          <div className="logo"  style={{cursor:"pointer"}}>
+        <Link to="/dashboard">
+          <div className="logo" style={{ cursor: "pointer" }}>
             <img src="/images/dckap_palli_logo_sm.svg" alt="DCKAP Palli logo" />
           </div>
         </Link>
@@ -101,13 +100,19 @@ const Sidebar = ({ menuList }) => {
           >
             <div className="batch-content-container flex">
               <div className="batch-logo">
-                <p>B</p>
+                <p>
+                  {currentBatch?.batch_name
+                    .split(" ")
+                    .map((word) => word.slice(0, 1).toUpperCase())
+                    .join("")}
+                </p>
               </div>
               <div className="batch-name">
                 <p>{currentBatch?.batch_name}</p>
-                {/* // CHange to currentBatch year */}
-
-                <span>2023-2024</span>
+                <span>
+                  {currentBatch?.start_date?.slice(0, 4)}-
+                  {currentBatch?.end_date?.slice(0, 4)}
+                </span>
               </div>
             </div>
             <div className="switch-icon">

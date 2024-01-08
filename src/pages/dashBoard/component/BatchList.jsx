@@ -14,13 +14,16 @@ const BatchList = ({ batchesList, handleEditClick }) => {
           <Link to={`/batch/${batch.id}/applications`} className="link">
 
               <div className="batches-list">
-                <Tooltip placement="top" title={batch.batch_name}>
-                  <h3 className="batch-name">
+                {/* <Tooltip placement="top" title={batch.batch_name}>
+                  
+                </Tooltip> */}
+                <h3 className="batch-name">
                     {batch.batch_name.length > 12
-                      ? `${batch.batch_name.slice(0, 12)}...`
+                      ? <Tooltip placement="top" title={batch.batch_name}>
+                        {`${batch.batch_name.slice(0, 20)}...`}
+                      </Tooltip>
                       : batch.batch_name}
                   </h3>
-                </Tooltip>
                 <div className="years flex">
                   <p className="start_date">{batch.start_date.slice(0, 4)}</p>
                   <p className="start_date">to</p>

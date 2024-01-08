@@ -110,7 +110,7 @@ const Login = () => {
                     <input
                       type={`${showPassword ? "text" : "password"}`}
                       className={`password-input ${
-                        errors.email ? "error-notify" : ""
+                        errors.password ? "error-notify" : ""
                       }`}
                       name="password"
                       placeholder="Type here..."

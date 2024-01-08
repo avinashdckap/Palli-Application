@@ -672,6 +672,7 @@ body {
         margin-bottom: 16px;
         font-weight: 500;
         font-family: $font-Roboto;
+        text-transform: capitalize;
       }
 
       .search-container {
@@ -720,6 +721,7 @@ body {
           font-weight: 500;
           background-color: #ffff;
           font-family: $font-Roboto;
+          text-transform: capitalize;
 
           span {
             font-size: 16px;

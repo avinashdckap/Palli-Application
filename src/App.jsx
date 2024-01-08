@@ -19,8 +19,7 @@ import ChangePassword from "./pages/changePasswordPage/ResetPasswordPage";
 import ForgotPassword from "./pages/forgotPage/ForgotPage";
 import Applications from "./pages/applications/Applications.jsx";
 import DashBoard from "./pages/dashBoard/DashBoard.jsx";
-import TaskModule from "./pages/task/TaskModule.jsx";
-import AssessmentModule from "./pages/assessment/Assessment.jsx";
+import AssessmentModule from "./pages/assessmentModule/AssessmentModule.jsx";
 import ErrorPage from "./pages/errorPage/ErrorPage.jsx";
 //Private Routes will be wrapped in below component
 import PrivateRoute from "./routes/PrivateRoute";
@@ -46,11 +45,11 @@ const App = () => {
 
         
           <Route path={TASKMODULE} element={<PrivateRoute />}>
-            <Route path={TASKMODULE} element={<TaskModule />} />
+            <Route path={TASKMODULE} element={<AssessmentModule type="task"/>} />
           </Route>
 
           <Route path={ASSESSMENTMODULE} element={<PrivateRoute />}>
-            <Route path={ASSESSMENTMODULE} element={<AssessmentModule />} />
+            <Route path={ASSESSMENTMODULE} element={<AssessmentModule type="assessment"/>} />
           </Route>
 
          

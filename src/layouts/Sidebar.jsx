@@ -41,7 +41,7 @@ const Sidebar = ({ menuList }) => {
         .get(`${API_END_POINT}/api/list/batch/`, { headers })
         .then((res) => {
           const batchListData = res.data.data
-          setBatchList(batchListData);
+          setBatchList(batchListData.filter((batch)=>batch.id !== Number(batchId)));
           setCurrentBatch(batchListData.find((batch) => batch.id === Number(batchId)));
         })
         .catch((err) => console.log(err));

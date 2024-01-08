@@ -9,7 +9,7 @@
     "lint": "eslint . --ext js,jsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview",
     "sass:compile": "sass src/scss/style.scss src/scss/css/style.css",
-    "sass:watch": "sass --watch src/pages/dashBoard/scss/Dashboard.scss src/pages/d ashBoard/scss/scss/Dashboard.css"
+    "sass:watch": "sass --watch src/scss/style.scss src/scss/css/style.css"
   },
   "dependencies": {
     "antd": "^5.12.1",

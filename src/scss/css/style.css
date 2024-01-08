@@ -293,6 +293,7 @@ body .container .side-nav-container .logo {
   width: 100%;
   margin-bottom: 32px;
   padding: 16px;
+  cursor: pointer;
 }
 body .container .side-nav-container .batch-switch-container {
   background-color: #f2f9e4;
@@ -536,6 +537,7 @@ body .container .listing-container h1 {
   margin-bottom: 16px;
   font-weight: 500;
   font-family: "Roboto";
+  text-transform: capitalize;
 }
 body .container .listing-container .search-container {
   position: relative;
@@ -578,6 +580,7 @@ body .container .listing-container .create-container .btn.create-btn {
   font-weight: 500;
   background-color: white;
   font-family: "Roboto";
+  text-transform: capitalize;
 }
 body .container .listing-container .create-container .btn.create-btn span {
   font-size: 16px;
